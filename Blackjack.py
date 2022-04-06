@@ -10,9 +10,9 @@ def draw2():
     cards = random.randint(0,12)
     card = deck[cards]
     hand = []
-    while card == 2:
+    while card <= 2:
         hand += card
-        print(hand)
+    print(hand)
         
 
 draw2()        
