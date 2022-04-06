@@ -16,7 +16,11 @@ def draw2():
         
 
 draw2()        
-
+#We draw two hard from the deck
+#onces cards are drawn they must be removed from the deck
+#Input print hit or stand
+#Repeat until over 21 or at 21
+#If hand > 21 you lose.
 """
 def part1():
     turn = 0
