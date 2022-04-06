@@ -10,12 +10,12 @@ def draw2():
     cards = random.randint(0,12)
     card = deck[cards]
     hand = []
-    while card <= 2:
+    while len(hand) <= 2:
         hand += card
-    print(hand)
-        
+    print(hand)        
 
 draw2()        
+
 #We draw two hard from the deck
 #onces cards are drawn they must be removed from the deck
 #Input print hit or stand
