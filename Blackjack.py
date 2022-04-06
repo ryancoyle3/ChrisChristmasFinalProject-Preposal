@@ -7,13 +7,13 @@ deck = {0: "Ace", 1: "2", 2: "3", 3: "4", 4: "5", 5: "6", 6: "7", 7: "8",
 
 
 def draw2():
-    cards = random.randint(0,12)
-    card = deck[cards]
     hand = []
-    while len(hand) <= 2:
-        hand += card
-    print(hand)        
-
+    while len(hand) < 2:
+        cards = random.randint(0,13)
+        card = deck[cards]
+        hand.append(card)
+    print(hand)
+        
 draw2()        
 
 #We draw two hard from the deck
