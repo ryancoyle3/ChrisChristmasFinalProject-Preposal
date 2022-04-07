@@ -8,11 +8,15 @@ deck = {0: "Ace", 1: "2", 2: "3", 3: "4", 4: "5", 5: "6", 6: "7", 7: "8",
 
 def draw2():
     hand = []
-    while len(hand) < 2:
+    while len(hand) < 4:
         cards = random.randint(0,13)
+        color = random.randint(0,5)
+        Suit = suits[color]
         card = deck[cards]
         hand.append(card)
-    print(hand)
+        hand.append(Suit)
+    print(hand)    
+
         
 draw2()        
 
