@@ -18,7 +18,15 @@ def draw2():
     print(hand)    
 
         
-draw2()        
+def hit():
+    playAgain = input("Do you want to HIT or HOLD?).lower()
+    if playAgain == "hit":
+        draw2()
+    else:
+        
+        
+            
+       
 
 #We draw two hard from the deck
 #onces cards are drawn they must be removed from the deck
