@@ -17,15 +17,18 @@ def draw2():
         hand.append(Suit)
     print("Your hand is", hand)
 
-def Dealerdraw():
-    Dealershand = []
-    while len(Dealershand) < 4:
+draw2()
+
+
+def dealerDraw():
+    dealersHand = []
+    while len(dealersHand) < 4:
         cards = random.randint(0,12)
         color = random.randint(0,3)
         Suit = suits[color]
         card = deck[cards]
-        Dealershand.append(card)
-        Dealershand.append(Suit)
+        dealersHand.append(card)
+        dealersHand.append(Suit)
     print("The Dealers hand is,", Dealershand)
 
 
@@ -43,16 +46,7 @@ def draw1():
         One.append(Suit)
     print("The card is",One)
         
-def BlackJack():
-    Betamount = input("How much are you willing to bet?")
-    hand = draw2()
-    Dealershand = Dealerdraw()
-    handamount = hand[0] + hand[3]
-    dealeramount = Dealershand[0] + Dealershand[3]
-    if handamount > 21:
-        print("You lose")
-    elif Dealersamount > 21:
-        print("You win, ",Betamount*2, "congratulations!")
+def playAgain():
     choice = input("Enter 'Hit' to Hit or 'Stand' to Stand")
     if choice == "Hit":
         draw1()
@@ -63,11 +57,37 @@ def BlackJack():
     #    print("yes")
     #else:
     # 3   print("no")
+
+def BlackJack():
+    done = False
+    while not done:
+        winnigs = 0
+        betAmount = input("How much are you willing to bet?")
+        hand = draw2()
+        dealersHand = dealerDraw()
+        handAmount = int(hand[0] + hand[2])
+        dealerAmount = dealersHand[0] + dealersHand[2]
+        if handAmount > 21:
+            print("You lose")
+            done = True
+            playAgain()
+        elif handAmount = 21:
+            print("You Win!!\n", betAmount *2)
+            done = True
+            playAgain()
+        elif dealersAmount > 21:
+            winnings += betAmount * 2
+            print("You win, ", betAmount * 2, "congratulations!")
+            done = True
+            playAgain()
+
         
     
 
 #draw1()
 BlackJack()
+
+
         
             
        
