@@ -9,21 +9,65 @@ deck = {0: "Ace", 1: "2", 2: "3", 3: "4", 4: "5", 5: "6", 6: "7", 7: "8",
 def draw2():
     hand = []
     while len(hand) < 4:
-        cards = random.randint(0,13)
-        color = random.randint(0,5)
+        cards = random.randint(0,12)
+        color = random.randint(0,3)
         Suit = suits[color]
         card = deck[cards]
         hand.append(card)
         hand.append(Suit)
-    print(hand)    
+    print("Your hand is", hand)
 
+def Dealerdraw():
+    Dealershand = []
+    while len(Dealershand) < 4:
+        cards = random.randint(0,12)
+        color = random.randint(0,3)
+        Suit = suits[color]
+        card = deck[cards]
+        Dealershand.append(card)
+        Dealershand.append(Suit)
+    print("The Dealers hand is,", Dealershand)
+
+
+
+
+    
+def draw1():
+    One = []
+    while len(One) < 2:
+        cards = random.randint(0,12)
+        color = random.randint(0,3)
+        Suit = suits[color]
+        card = deck[cards]
+        One.append(card)
+        One.append(Suit)
+    print("The card is",One)
         
-def hit():
-    playAgain = input("Do you want to HIT or HOLD?).lower()
-    if playAgain == "hit":
-        draw2()
+def BlackJack():
+    Betamount = input("How much are you willing to bet?")
+    hand = draw2()
+    Dealershand = Dealerdraw()
+    handamount = hand[0] + hand[3]
+    dealeramount = Dealershand[0] + Dealershand[3]
+    if handamount > 21:
+        print("You lose")
+    elif Dealersamount > 21:
+        print("You win, ",Betamount*2, "congratulations!")
+    choice = input("Enter 'Hit' to Hit or 'Stand' to Stand")
+    if choice == "Hit":
+        draw1()
     else:
+        print("no")
+
+    #if hand >= 16:
+    #    print("yes")
+    #else:
+    # 3   print("no")
         
+    
+
+#draw1()
+BlackJack()
         
             
        
