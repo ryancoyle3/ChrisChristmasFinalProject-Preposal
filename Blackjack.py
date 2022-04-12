@@ -11,7 +11,17 @@ deck = {0: "Ace", 1: "2", 2: "3", 3: "4", 4: "5", 5: "6", 6: "7", 7: "8",
 #Phase1: deal one card to every player
 #Create a list players and use whiles to remove them once they stand
 
-
+def draw1():
+    hand = []
+    while len(hand) < 2:
+        cards = random.randint(0,12)
+        color = random.randint(0,3)
+        suit = suits[color]
+        card = deck[cards]
+        hand.append(cards)
+        hand.append(suit)
+    print(hand)
+#draw1()    
 
 def draw2():
     hand = []
@@ -32,7 +42,7 @@ def dealerDraw():
 
 #dealerDraw()
 
-    
+ 
 def phase1():
     one = []
     while len(one) < 2:
@@ -56,7 +66,16 @@ def playAgain():
     #else:
     # 3   print("no")
 
+#BET RULES
+#min bet amount is $10    
 
+
+#END GAME
+#Ask for buy-in add to winnings and if winnings <= 0
+#Players name is removed from list    
+
+
+"""
 def BlackJack():
     phase1()
     done = False
@@ -82,17 +101,11 @@ def BlackJack():
             playAgain()
 
         
-#draw1()
-BlackJack()
+#BlackJack()
+"""
 
 
-
-
-
-
-        
-            
-       
+   
 
 #We draw two hard from the deck
 #onces cards are drawn they must be removed from the deck
