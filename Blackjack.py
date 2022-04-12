@@ -1,13 +1,14 @@
-#Vincent Schetroma, Chris Christmas, Ryan Coyle
-
 import random
 
 suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
 
 deck = {0: "Ace", 1: "2", 2: "3", 3: "4", 4: "5", 5: "6", 6: "7", 7: "8",
          8: "9", 9: "10", 10: "Jack", 11: "Queen", 12: "King"}
+usedCards = []
 
+playerNames = []
 
+entryBread = []
 
 #Create an empty dictionary in the global space called cards delt, 
 #which tracks the cards delt
@@ -15,7 +16,18 @@ deck = {0: "Ace", 1: "2", 2: "3", 3: "4", 4: "5", 5: "6", 6: "7", 7: "8",
 #Phase1: deal one card to every player
 #Create a list players and use whiles to remove them once they stand
 
+def draw1():
+    hand = []
+    while len(hand) < 2:
+        cards = random.randint(0,12)
+        color = random.randint(0,3)
+        suit = suits[color]
+        card = deck[cards]
+        hand.append(cards)
+        hand.append(suit)
+    print(hand)
 
+#draw1()    
 
 def draw2():
     hand = []
@@ -32,21 +44,30 @@ def draw2():
 
 
 def dealerDraw():
-    return draw2()
+    return draw1
 
 #dealerDraw()
 
+
+def players(playerNames):
+        player = input("What are all of your names? \n (Seperate by space):").lower()
+        player = player.split(" ")
+        playerNames += player
+        return player
+
+#players(playerNames)
+
+def getEntryBread(entryBread):
     
+        
+    
+
+ 
 def phase1():
-    Firstcard = []
-    while len(Firstcard) < 2:
-        cards = random.randint(0,12)
-        color = random.randint(0,3)
-        suit = suits[color]
-        card = deck[cards]
-        Firstcard.append(card)
-        Firstcard.append(suit)
-    print("The card is", Firstcard)
+    firstHand = dealerDraw()
+    return print("Dealers first hard is:", firstHand)
+
+#phase1()    
         
 def playAgain():
     choice = input("Enter 'Hit' to Hit or 'Stand' to Stand")
@@ -55,10 +76,14 @@ def playAgain():
     else:
         print("no")
 
-    #if hand >= 16:
-    #    print("yes")
-    #else:
-    # 3   print("no")
+
+#BET RULES
+#min bet amount is $10    
+
+
+#END GAME
+#Ask for buy-in add to winnings and if winnings <= 0
+#Players name is removed from list    
 
 
 def BlackJack():
