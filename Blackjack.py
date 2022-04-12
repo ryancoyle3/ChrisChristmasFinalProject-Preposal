@@ -38,30 +38,42 @@ def draw2():
         card = deck[cards]
         hand.append(cards)
         hand.append(suit)
-    print(hand)
+    print("Your hand is",(hand))
 
 #draw2()
 
 
 def dealerDraw():
-    return draw1
+    Dealershand = []
+    while len(Dealershand) < 2:
+        cards = random.randint(0,12)
+        color = random.randint(0,3)
+        Suit = suits[color]
+        card = deck[cards]
+        Dealershand.append(card)
+        Dealershand.append(Suit)
+    print("The Dealers first card is,", Dealershand)
 
 #dealerDraw()
 
 
 def players(playerNames):
-        player = input("What are all of your names? \n (Seperate by comma):").lower()
-        player = player.split(",")
+        player = input("What are all of your names? \n (Seperate by space):").lower()
+        player = player.split(" ")
         playerNames += player
-        print(playerNames)
+        return player
 
 #players(playerNames)
 
-def getEntryBread(entryBread):
-    for name in range(playerNames):
-        money = input(name, "How much do you want to bet?")
+#def getEntryBread(entryBread):
+    
         
     
+
+ 
+def phase1():
+    firstHand = dealerDraw()
+    return print("Dealers first hard is:", firstHand)
 
 #phase1()    
         
@@ -83,15 +95,20 @@ def playAgain():
 
 
 def BlackJack():
-    phase1()
     done = False
     while not done:
         winnigs = 0
-        betAmount = input("How much are you willing to bet?")
+        betAmount = int(input("How much are you willing to bet?"))
+        if betAmount%10 == 0:
+            continue
+        while betAmount % 10 != 0:
+            betAmount = int(input("Your bet amount must be in terms of 10."))
+        dealerDraw()
         hand = draw2()
-        dealersHand = dealerDraw()
-        handAmount = 18 #(int(hand[0]) + int(hand[2]))
-        dealerAmount = 17 #dealersHand[0] + dealersHand[2]
+        #dealersHand = dealerDraw()
+        handAmount = X #(int(hand[0]) + int(hand[2])) Need to be able to add
+                        # the two card amounts to determine whether to hit or stand
+        dealerAmount = X #dealersHand[0] + dealersHand[2]
         while dealerAmount <= 16:
             addedCard = draw1()
             dealerAmount += addedCard
