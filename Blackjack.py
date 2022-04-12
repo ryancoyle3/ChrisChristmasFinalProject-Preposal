@@ -67,14 +67,15 @@ def playAgain():
     # 3   print("no")
 
 #BET RULES
-#min bet amount is $10    
+#min bet amount must be divisible by $10 
 
 
 #END GAME
 #Ask for buy-in add to winnings and if winnings <= 0
 #Players name is removed from list    
 
-
+#If the dealers hand is 17 or greater the delater must stand
+#if the dealers hand is 16 or smaller the dealer must hit
 """
 def BlackJack():
     phase1()
