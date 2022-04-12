@@ -5,46 +5,44 @@ suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
 deck = {0: "Ace", 1: "2", 2: "3", 3: "4", 4: "5", 5: "6", 6: "7", 7: "8",
          8: "9", 9: "10", 10: "Jack", 11: "Queen", 12: "King"}
 
+#Create an empty dictionary in the global space called cards delt, 
+#which tracks the cards delt
+#While not in cards delt pull from draw2
+#Phase1: deal one card to every player
+#Create a list players and use whiles to remove them once they stand
+
+
 
 def draw2():
     hand = []
     while len(hand) < 4:
         cards = random.randint(0,12)
         color = random.randint(0,3)
-        Suit = suits[color]
+        suit = suits[color]
         card = deck[cards]
-        hand.append(card)
-        hand.append(Suit)
-    print("Your hand is", hand)
+        hand.append(cards)
+        hand.append(suit)
+    print(hand)
 
-draw2()
+#draw2()
 
 
 def dealerDraw():
-    dealersHand = []
-    while len(dealersHand) < 4:
-        cards = random.randint(0,12)
-        color = random.randint(0,3)
-        Suit = suits[color]
-        card = deck[cards]
-        dealersHand.append(card)
-        dealersHand.append(Suit)
-    print("The Dealers hand is,", Dealershand)
+    return draw2()
 
-
-
+#dealerDraw()
 
     
-def draw1():
-    One = []
-    while len(One) < 2:
+def phase1():
+    one = []
+    while len(one) < 2:
         cards = random.randint(0,12)
         color = random.randint(0,3)
-        Suit = suits[color]
+        suit = suits[color]
         card = deck[cards]
-        One.append(card)
-        One.append(Suit)
-    print("The card is",One)
+        one.append(card)
+        one.append(suit)
+    print("The card is",one)
         
 def playAgain():
     choice = input("Enter 'Hit' to Hit or 'Stand' to Stand")
@@ -58,7 +56,9 @@ def playAgain():
     #else:
     # 3   print("no")
 
+
 def BlackJack():
+    phase1()
     done = False
     while not done:
         winnigs = 0
@@ -82,10 +82,12 @@ def BlackJack():
             playAgain()
 
         
-    
-
 #draw1()
 BlackJack()
+
+
+
+
 
 
         
