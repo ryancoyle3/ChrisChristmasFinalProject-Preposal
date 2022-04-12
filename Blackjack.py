@@ -50,22 +50,18 @@ def dealerDraw():
 
 
 def players(playerNames):
-        player = input("What are all of your names? \n (Seperate by space):").lower()
-        player = player.split(" ")
+        player = input("What are all of your names? \n (Seperate by comma):").lower()
+        player = player.split(",")
         playerNames += player
-        return player
+        print(playerNames)
 
 #players(playerNames)
 
 def getEntryBread(entryBread):
-    
+    for name in range(playerNames):
+        money = input(name, "How much do you want to bet?")
         
     
-
- 
-def phase1():
-    firstHand = dealerDraw()
-    return print("Dealers first hard is:", firstHand)
 
 #phase1()    
         
