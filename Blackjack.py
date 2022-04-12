@@ -38,45 +38,35 @@ def draw2():
         card = deck[cards]
         hand.append(cards)
         hand.append(suit)
-    print("Your hand is",(hand))
+    print(hand)
 
 #draw2()
 
 
 def dealerDraw():
-    Dealershand = []
-    while len(Dealershand) < 2:
-        cards = random.randint(0,12)
-        color = random.randint(0,3)
-        Suit = suits[color]
-        card = deck[cards]
-        Dealershand.append(card)
-        Dealershand.append(Suit)
-    print("The Dealers first card is,", Dealershand)
+    return draw1
 
 #dealerDraw()
 
 
 def players(playerNames):
-        player = input("What are all of your names? \n (Seperate by space):").lower()
-        player = player.split(" ")
+        player = input("What are all of your names? \n (Seperate by comma):").lower()
+        player = player.split(",")
         playerNames += player
-        return player
+        print(playerNames)
 
-#players(playerNames)
+players(playerNames)
 
-#def getEntryBread(entryBread):
-    
+def getEntryBread(entryBread):
+    for name in playerNames():
+        money = input(name, "How much do you want to bet?")
+        money = money.split(" ")
+        entryBread += money
+        return money
         
     
 
- 
-def phase1():
-    firstHand = dealerDraw()
-    return print("Dealers first hard is:", firstHand)
-
-#phase1()    
-        
+getEntryBread(entryBread) 
 def playAgain():
     choice = input("Enter 'Hit' to Hit or 'Stand' to Stand")
     if choice == "Hit":
