@@ -62,17 +62,18 @@ def getEntryBread(entryBread):
         money = input(name, "How much do you want to bet?")
         money = money.split(" ")
         entryBread += money
-        return money
+        return entryBread
         
     
 
-getEntryBread(entryBread) 
-def playAgain():
+#getEntryBread(entryBread) 
+
+def hitOrStand():
     choice = input("Enter 'Hit' to Hit or 'Stand' to Stand")
     if choice == "Hit":
         draw1()
     else:
-        print("no")
+        print("Stand")
 
 
 #BET RULES
@@ -84,12 +85,13 @@ def playAgain():
 #Players name is removed from list    
 
 
-def BlackJack():
+def blackJack():
     done = False
     while not done:
         winnigs = 0
         betAmount = int(input("How much are you willing to bet?"))
         if betAmount%10 == 0:
+            entryBread -= betAmount
             continue
         while betAmount % 10 != 0:
             betAmount = int(input("Your bet amount must be in terms of 10."))
