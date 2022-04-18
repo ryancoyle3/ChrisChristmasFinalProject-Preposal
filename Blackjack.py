@@ -4,11 +4,49 @@ suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
 
 deck = {1: "Ace", 2: "2", 3: "3", 4: "4", 5: "5", 6: "6", 7: "7", 8: "8",
          9: "9", 10: "10", 11: "Jack", 12: "Queen", 13: "King"}
-usedCards = []
+
+usedCardsTotal = []
+
+usedCardsPlayer = []
+
+usedCardsDealer = []
 
 playerNames = []
 
 entryBread = []
+
+def draw2():
+    hand = []
+    while len(hand) < 4:
+        cards = random.randint(1,13)
+        color = random.randint(0,3)
+        suit = suits[color]
+        card = deck[cards]
+        hand.append(cards)
+        hand.append(suit)
+        usedCardsTotal += hand
+        usedCardsDealer += hand
+    print("Your hand is",hand)
+    return hand
+    
+#draw2()
+
+def dealerDraw():
+    dealersHand = []
+    while len(dealersHand) < 2:
+        cards = random.randint(1,13)
+        color = random.randint(0,3)
+        suit = suits[color]
+        card = deck[cards]
+        dealersHand.append(cards)
+        dealersHand.append(suit)
+        usedCardsTotal += dealersHand
+        usedCardsDealer += dealersHand
+    print("The dealers first card is", dealersHand)
+    return dealersHand
+
+#dealerDraw()
+
   
 #Create an empty dictionary in the global space called cards delt, 
 #which tracks the cards delt
@@ -29,25 +67,6 @@ def draw1():
 
 #draw1()    
 
-def draw2():
-    hand = []
-    while len(hand) < 4:
-        cards = random.randint(1,13)
-        color = random.randint(0,3)
-        suit = suits[color]
-        card = deck[cards]
-        hand.append(cards)
-        hand.append(suit)
-    return hand
-    
-
-#draw2()
-
-
-def dealerDraw():
-    return draw2()
-
-#dealerDraw()
 
 
 def players(playerNames):
@@ -77,7 +96,7 @@ def hitOrStand():
     if choice == "hit":
         return draw1()
     else:
-        return null
+        return None
 
 
 #BET RULES
@@ -117,9 +136,14 @@ def blackJack():
             elif dealerAmount > 21:
                 print("The Dealer lost, you win.")
                 done = True
-        while handAmount True:
-            hitOrStand()
-
+        while True:
+            addedCard = hitOrStand()
+            if addedCard == None:
+                break
+            handAmount += getValue(addedCard[0])
+            if handAmount > 21:
+                print("lose.")
+                break       
         if handAmount > 21:
             print("You lose")
             done = True
@@ -130,9 +154,11 @@ def blackJack():
             winnings += betAmount
             print("You win, ", betAmount * 2, "congratulations!")
             done = True
-        
+        #else if handAmount > DealerAmount
+        #else the dealer has more
 
         
 
 blackJack()
+
 
