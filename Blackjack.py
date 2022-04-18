@@ -22,6 +22,7 @@ def draw2():
         color = random.randint(0,3)
         suit = suits[color]
         card = deck[cards]
+        #use the validCard function
         hand.append(cards)
         hand.append(suit)
         usedCardsTotal += hand
@@ -38,6 +39,7 @@ def dealerDraw():
         color = random.randint(0,3)
         suit = suits[color]
         card = deck[cards]
+        #use the validCard function
         dealersHand.append(cards)
         dealersHand.append(suit)
         usedCardsTotal += dealersHand
@@ -61,6 +63,7 @@ def draw1():
         color = random.randint(0,3)
         suit = suits[color]
         card = deck[cards]
+        #use the validCard function
         hand.append(cards)
         hand.append(suit)
     return hand
@@ -160,5 +163,3 @@ def blackJack():
         
 
 blackJack()
-
-
