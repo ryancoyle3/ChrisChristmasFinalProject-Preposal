@@ -19,7 +19,7 @@ entryBread = []
 def draw1():
     hand = []
     while len(hand) < 2:
-        cards = random.randint(0,12)
+        cards = random.randint(1,13)
         color = random.randint(0,3)
         suit = suits[color]
         card = deck[cards]
@@ -32,7 +32,7 @@ def draw1():
 def draw2():
     hand = []
     while len(hand) < 4:
-        cards = random.randint(0,12)
+        cards = random.randint(1,13)
         color = random.randint(0,3)
         suit = suits[color]
         card = deck[cards]
@@ -64,17 +64,20 @@ def getEntryBread(entryBread):
         money = money.split(" ")
         entryBread += money
         return entryBread
+           
+#getEntryBread(entryBread)
+
+def playAgain():
+    blackJack()
         
     
 
-#getEntryBread(entryBread) 
-
 def hitOrStand():
-    choice = input("Enter 'Hit' to Hit or 'Stand' to Stand")
-    if choice == "Hit":
-        draw1()
+    choice = input("Enter 'Hit' to Hit or 'Stand' to Stand").lower()
+    if choice == "hit":
+        return draw1()
     else:
-        print("Stand")
+        return null
 
 
 #BET RULES
@@ -97,38 +100,39 @@ def getValue(card):
 def blackJack():
     done = False
     while not done:
-        winnigs = 0
+        winnings = 0
         betAmount = int(input("How much are you willing to bet?"))
         while betAmount % 10 != 0:
             betAmount = int(input("Your bet amount must be in terms of 10."))
         dealerHand = dealerDraw()
         hand = draw2()
-        #dealersHand = dealerDraw()
-        handAmount = getValue(int(hand[0])) + getValue(int(hand[2])) 
+        handAmount = getValue(int(hand[0])) + getValue(int(hand[2]))
         dealerAmount = getValue(dealerHand[0]) + getValue(dealerHand[2])
         while dealerAmount <= 16:
             addedCard = draw1()
-            dealerAmount += addedCard
-            if dealerAmount >= 17:
+            dealerAmount += getValue(addedCard[0])
+            if dealerAmount >= 17 and dealerAmount <= 21:
                 print("The Dealer stands at",dealerAmount)
                 continue
             elif dealerAmount > 21:
                 print("The Dealer lost, you win.")
                 done = True
+        while handAmount True:
+            hitOrStand()
+
         if handAmount > 21:
             print("You lose")
             done = True
-            playAgain()
         elif handAmount == 21:
             print("You Win!!\n", betAmount *2)
             done = True
-            playAgain()
         elif dealerAmount > 21:
-            winnings += betAmount * 2
+            winnings += betAmount
             print("You win, ", betAmount * 2, "congratulations!")
             done = True
-            playAgain()
+        
 
         
 
-#blackJack()
+blackJack()
+
