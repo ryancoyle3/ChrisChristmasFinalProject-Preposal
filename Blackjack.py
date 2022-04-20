@@ -128,7 +128,7 @@ def blackJack():
         winnings = 0
         betAmount = int(input("How much are you willing to bet?"))
         while betAmount % 10 != 0:
-            betAmount = int(input("Your bet amount must be in terms of 10."))
+            betAmount = int(input("Your bet amount must be in terms of 10.\nTry again, how much are you willing to bet?"))
         dealerHand = dealerDraw()
         hand = draw2()
         handAmount = getValue(int(hand[0])) + getValue(int(hand[2]))
