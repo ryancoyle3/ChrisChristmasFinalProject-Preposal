@@ -154,7 +154,7 @@ def blackJack():
                 print("Your win total is now",winnings)
                 done = True
                 break
-        if 16 <= dealerAmount <= 21:
+        while 16 <= dealerAmount <= 21:
             addedCard = hitOrStand()
             if addedCard == None:
                 break
