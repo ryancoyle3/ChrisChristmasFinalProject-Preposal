@@ -4,7 +4,6 @@ suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
 
 deck = {1: "Ace", 2: "2", 3: "3", 4: "4", 5: "5", 6: "6", 7: "7", 8: "8",
          9: "9", 10: "10", 11: "Jack", 12: "Queen", 13: "King"}
-
 usedCardsTotal = []
 
 usedCardsPlayer = []
@@ -17,6 +16,8 @@ entryBread = []
 
 def draw2():
     hand = []
+    usedCardsTotal = []
+    usedCardsPlayer = []
     while len(hand) < 4:
         cards = random.randint(1,13)
         color = random.randint(0,3)
@@ -26,26 +27,28 @@ def draw2():
         hand.append(cards)
         hand.append(suit)
         usedCardsTotal += hand
-        usedCardsDealer += hand
+        usedCardsPlayer += hand
     print("Your hand is",hand)
     return hand
     
 #draw2()
 
 def dealerDraw():
-    dealersHand = []
-    while len(dealersHand) < 2:
+    dealerHand = []
+    usedCardsDealer = []
+    usedCardsTotal = []
+    while len(dealerHand) < 2:
         cards = random.randint(1,13)
         color = random.randint(0,3)
         suit = suits[color]
         card = deck[cards]
         #use the validCard function
-        dealersHand.append(cards)
-        dealersHand.append(suit)
-        usedCardsTotal += dealersHand
-        usedCardsDealer += dealersHand
-    print("The dealers first card is", dealersHand)
-    return dealersHand
+        dealerHand.append(cards)
+        dealerHand.append(suit)
+        usedCardsTotal += dealerHand
+        usedCardsDealer += dealerHand
+    print("The dealers first card is", dealerHand)
+    return dealerHand
 
 #dealerDraw()
 
@@ -129,25 +132,46 @@ def blackJack():
         dealerHand = dealerDraw()
         hand = draw2()
         handAmount = getValue(int(hand[0])) + getValue(int(hand[2]))
-        dealerAmount = getValue(dealerHand[0]) + getValue(dealerHand[2])
+        dealerAmount = getValue(int(dealerHand[0])) #+ getValue(int(dealerHand[1]))
+       # hit = hitOrStand()
+        
+            #handAmount += getValue(addedCard[0])
+            #print("Your hand total is now",handAmount)
+            #if handAmount > 21:
+           #     winnings = winnings - betAmount
+            #    print("Your hand total is greater than 21, the Dealer wins. :(")
+             #   print("Your win total is now",winnings)
         while dealerAmount <= 16:
             addedCard = draw1()
             dealerAmount += getValue(addedCard[0])
+            print("The Dealer hits to get",dealerAmount)
             if dealerAmount >= 17 and dealerAmount <= 21:
                 print("The Dealer stands at",dealerAmount)
                 continue
             elif dealerAmount > 21:
-                print("The Dealer lost, you win.")
+                winnings = betAmount + winnings
+                print("The Dealer lost, you win!")
+                print("Your win total is now",winnings)
                 done = True
-        while True:
+                break
+        if 16 <= dealerAmount <= 21:
             addedCard = hitOrStand()
             if addedCard == None:
                 break
             handAmount += getValue(addedCard[0])
+            print("Your hand total is now",handAmount)
             if handAmount > 21:
-                print("lose.")
-                break       
-        if handAmount > 21:
+                winnings = winnings - betAmount
+                print("Your hand total is greater than 21, the Dealer wins. :(")
+                print("Your win total is now",winnings)
+                
+                break
+        if handAmount <= 21 and handAmount > dealerAmount:
+            winnings = winnings + betAmount
+            print("The Dealer loses you win!")
+            print("Your win total is now",winnings)
+            
+        elif handAmount > 21:
             print("You lose")
             done = True
         elif handAmount == 21:
@@ -155,10 +179,10 @@ def blackJack():
             done = True
         elif dealerAmount > 21:
             winnings += betAmount
-            print("You win, ", betAmount * 2, "congratulations!")
+            print("You win, ", betAmount, "congratulations!")
             done = True
-        #else if handAmount > DealerAmount
-        #else the dealer has more
+       #Have to move around the order of the game, look at online blackjack
+        #simulator
 
         
 
