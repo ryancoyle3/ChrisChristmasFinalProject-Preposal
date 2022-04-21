@@ -70,6 +70,12 @@ def draw2():
     print("Your hand is",hand)
     return hand
 
+def ace(handAmount):
+    if sum(handAmount-1) == 21 or sum(handAmount+11) > 21:
+        deck[1] = 1
+    else:
+        deck[1] = 11
+
     
 
 def blackjack():
