@@ -1,9 +1,11 @@
+#Vincent Schetroma
 import random
 
 suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
 
 deck = {1: "Ace", 2: "2", 3: "3", 4: "4", 5: "5", 6: "6", 7: "7", 8: "8",
          9: "9", 10: "10", 11: "Jack", 12: "Queen", 13: "King"}
+
 usedCardsTotal = []
 
 usedCardsPlayer = []
@@ -14,11 +16,10 @@ playerNames = []
 
 entryBread = []
 
-def draw2():
+
+def draw1():
     hand = []
-    usedCardsTotal = []
-    usedCardsPlayer = []
-    while len(hand) < 4:
+    while len(hand) < 2:
         cards = random.randint(1,13)
         color = random.randint(0,3)
         suit = suits[color]
@@ -26,12 +27,7 @@ def draw2():
         #use the validCard function
         hand.append(cards)
         hand.append(suit)
-        usedCardsTotal += hand
-        usedCardsPlayer += hand
-    print("Your hand is",hand)
     return hand
-    
-#draw2()
 
 def dealerDraw():
     dealerHand = []
@@ -50,18 +46,11 @@ def dealerDraw():
     print("The dealers first card is", dealerHand)
     return dealerHand
 
-#dealerDraw()
-
-  
-#Create an empty dictionary in the global space called cards delt, 
-#which tracks the cards delt
-#While not in cards delt pull from draw2
-#Phase1: deal one card to every player
-#Create a list players and use whiles to remove them once they stand
-
-def draw1():
+def draw2():
     hand = []
-    while len(hand) < 2:
+    usedCardsTotal = []
+    usedCardsPlayer = []
+    while len(hand) < 4:
         cards = random.randint(1,13)
         color = random.randint(0,3)
         suit = suits[color]
@@ -69,121 +58,58 @@ def draw1():
         #use the validCard function
         hand.append(cards)
         hand.append(suit)
+        usedCardsTotal += hand
+        usedCardsPlayer += hand
+    print("Your hand is",hand)
     return hand
-
-#draw1()    
-
-
-
-def players(playerNames):
-        player = input("What are all of your names? \n (Seperate by comma):").lower()
-        player = player.split(",")
-        playerNames += player
-        print(playerNames)
-
-#players(playerNames)
-
-def getEntryBread(entryBread):
-    for name in playerNames:
-        money = input(name + ": How much do you want to bet?")
-        money = money.split(" ")
-        entryBread += money
-        return entryBread
-           
-#getEntryBread(entryBread)
-
-def playAgain():
-    blackJack()
-        
-    
 
 def hitOrStand():
     choice = input("Enter 'Hit' to Hit or 'Stand' to Stand").lower()
-    if choice == "hit":
-        return draw1()
+    while choice == "hit":
+        addcard = draw1()
+        handAmount += getValue(addedCard[0])
+        print("Your hand amount is now", handAmount)
+        choice = input("Enter 'Hit' to Hit or 'Stand' to Stand").lower()
+        
+        return 
     else:
         return None
-
-
-#BET RULES
-#min bet amount is $10    
-
-
-#END GAME
-#Ask for buy-in add to winnings and if winnings <= 0
-#Players name is removed from list
-
+    
 def getValue(card):
     if card >= 2 and card <= 10:
         return card
     elif card > 10:
         return 10
     else:
-        return 11        
-      
+        return 11
 
-def blackJack():
+def blackjack():
     done = False
     while not done:
         winnings = 0
         betAmount = int(input("How much are you willing to bet?"))
         while betAmount % 10 != 0:
-            betAmount = int(input("Your bet amount must be in terms of 10.\nTry again, how much are you willing to bet?"))
+            print("Your bet amount must be in terms of 10.")
+            betAmount = int(input("How much are you willing to bet?"))
         dealerHand = dealerDraw()
         hand = draw2()
         handAmount = getValue(int(hand[0])) + getValue(int(hand[2]))
-        dealerAmount = getValue(int(dealerHand[0])) #+ getValue(int(dealerHand[1]))
-       # hit = hitOrStand()
-        
-            #handAmount += getValue(addedCard[0])
-            #print("Your hand total is now",handAmount)
-            #if handAmount > 21:
-           #     winnings = winnings - betAmount
-            #    print("Your hand total is greater than 21, the Dealer wins. :(")
-             #   print("Your win total is now",winnings)
-        while dealerAmount <= 16:
+        dealerAmount = getValue(int(dealerHand[0]))
+        choice = input("Enter 'Hit' to Hit or 'Stand to Stand.").lower()
+        while choice == 'hit':
             addedCard = draw1()
-            dealerAmount += getValue(addedCard[0])
-            print("The Dealer hits to get",dealerAmount)
-            if dealerAmount >= 17 and dealerAmount <= 21:
-                print("The Dealer stands at",dealerAmount)
-                continue
-            elif dealerAmount > 21:
-                winnings = betAmount + winnings
-                print("The Dealer lost, you win!")
-                print("Your win total is now",winnings)
-                done = True
-                break
-        while 16 <= dealerAmount <= 21:
-            addedCard = hitOrStand()
-            if addedCard == None:
-                break
             handAmount += getValue(addedCard[0])
-            print("Your hand total is now",handAmount)
+            print("Your hand amount is now", handAmount)
             if handAmount > 21:
-                winnings = winnings - betAmount
-                print("Your hand total is greater than 21, the Dealer wins. :(")
-                print("Your win total is now",winnings)
-                
+                print("Your hand amount is over 21, The Dealer wins.")
                 break
-        if handAmount <= 21 and handAmount > dealerAmount:
-            winnings = winnings + betAmount
-            print("The Dealer loses you win!")
-            print("Your win total is now",winnings)
+            choice = input("Enter 'Hit' to Hit or 'Stand' to Stand").lower()
             
-        elif handAmount > 21:
-            print("You lose")
-            done = True
-        elif handAmount == 21:
-            print("You Win!!\n", betAmount *2)
-            done = True
-        elif dealerAmount > 21:
-            winnings += betAmount
-            print("You win, ", betAmount, "congratulations!")
-            done = True
-       #Have to move around the order of the game, look at online blackjack
-        #simulator
+        else:
+            return None
 
+    done = True
         
-
-blackJack()
+            
+            
+blackjack()
