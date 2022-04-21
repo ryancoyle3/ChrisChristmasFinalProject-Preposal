@@ -1,4 +1,3 @@
-#Vincent Schetroma
 import random
 
 suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
@@ -16,6 +15,11 @@ playerNames = []
 
 entryBread = []
 
+def ace(handAmount):
+    if sum(handAmount) > 21 and 11 in handAmount:
+        index = handAmount.index(11)
+        handAmount[index] = 1
+  
 
 def draw1():
     hand = []
@@ -28,16 +32,18 @@ def draw1():
         hand.append(cards)
         hand.append(suit)
     return hand
+#print(draw1())
 
 
 def getValue(card):
-    if card >= 2 and card <= 10:
+    if card >= 1 and card <= 10:
         return card
     elif card > 10:
         return 10
     
 def dealerDraw():
     dealerHand = []
+    dealerHaand = []
     usedCardsDealer = []
     usedCardsTotal = []
     while len(dealerHand) < 2:
@@ -47,13 +53,35 @@ def dealerDraw():
         card = deck[cards]
         #use the validCard function
         dealerHand.append(cards)
+        dealerHaand.append(card)
+        dealerHaand.append(suit)
         dealerHand.append(suit)
         usedCardsTotal += dealerHand
         usedCardsDealer += dealerHand
-    print("The dealers first card is", getValue(dealerHand[0]), dealerHand[1])
+    print("The dealers first card is", dealerHaand)
     return dealerHand
 
 def draw2():
+    hand = []
+    haand = []
+    usedCardsTotal = []
+    usedCardsPlayer = []
+    while len(hand) < 4:
+        cards = random.randint(1,13)
+        color = random.randint(0,3)
+        suit = suits[color]
+        card = deck[cards]
+        #use the validCard function
+        haand.append(card)
+        haand.append(suit)
+        hand.append(cards)
+        hand.append(suit)
+        usedCardsTotal += hand
+        usedCardsPlayer += hand
+    print("Your hand is",haand)
+    return hand
+
+def tens():
     hand = []
     usedCardsTotal = []
     usedCardsPlayer = []
@@ -80,16 +108,19 @@ def blackjack():
         while betAmount % 10 != 0:
             print("Your bet amount must be in terms of 10.")
             betAmount = int(input("How much are you willing to bet?"))
-        dealerHand = dealerDraw()
+        dealerHand = dealerDraw()       
         hand = draw2()
-        handAmount = getValue(int(hand[0])) + getValue(int(hand[2]))
+        handAmount = []
+        handAmount.append(getValue(int(hand[0])))
+        handAmount.append(getValue(int(hand[2])))
         dealerAmount = getValue(int(dealerHand[0]))
         choice = input("Enter 'Hit' to Hit or 'Stand to Stand.").lower()
         while choice == 'hit':
             addedCard = draw1()
-            handAmount += getValue(addedCard[0])
-            print("Your hand amount is now", handAmount)
-            if handAmount > 21:
+            handAmount.append(getValue(addedCard[0]))
+            ace(handAmount)
+            print("Your hand amount is now", sum(handAmount))
+            if sum(handAmount) > 21:
                 print("Your hand amount is over 21, The Dealer wins.")
                 break
             choice = input("Enter 'Hit' to Hit or 'Stand' to Stand").lower()  
@@ -97,8 +128,8 @@ def blackjack():
             addedCard = draw1()
             dealerAmount += getValue(addedCard[0])
             print("The Dealers hand amount is",dealerAmount)
-        print("Your hand amount is", handAmount)
-        if handAmount <= 21 and handAmount > dealerAmount:
+        print("Your hand amount is", sum(handAmount))
+        if sum(handAmount) <= 21 and sum(handAmount) > dealerAmount:
             winnings = winnings + betAmount
             print("The Dealer loses, you win!")
             print("Your win total is now",winnings)
@@ -107,7 +138,7 @@ def blackjack():
                 done = done
             else:
                 done = True
-        elif dealerAmount > handAmount:
+        elif dealerAmount > sum(handAmount):
             winnings = winnings - betAmount
             print("The Dealer won you lose. :[")
             print("Your win total is now",winnings)
@@ -116,16 +147,16 @@ def blackjack():
                 done = done
             else:
                 done = True
-        elif handAmount > 21:
+        elif sum(handAmount) > 21:
             winnings = winnings - betAmount
-            print("The Dealer won you lose. :[")
+            print("The Dealer won, you lose", ":(")
             print("Your win total is now", winnings)
             playagain = input("Enter yes to play again.")
             if playagain == 'yes':
                 done = done
             else:
                 done = True
-        elif handAmount == 21:
+        elif sum(handAmount) == 21:
             winnings = winnings - betAmount
             print("The Dealer loses you win!")
             print("Your win total is now",winnings)
