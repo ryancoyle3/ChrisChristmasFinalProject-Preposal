@@ -1,3 +1,4 @@
+#Vincent Schetroma
 import random
 
 suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
@@ -28,14 +29,9 @@ def draw1():
         hand.append(suit)
     return hand
 
-def ace(handAmount):
-    if sum(handAmount-1) == 21 or sum(handAmount+11) > 21:
-        deck[1] = 1
-    else:
-        deck[1] = 11
 
 def getValue(card):
-    if card >= 1 and card <= 10:
+    if card >= 2 and card <= 10:
         return card
     elif card > 10:
         return 10
@@ -97,9 +93,11 @@ def blackjack():
                 print("Your hand amount is over 21, The Dealer wins.")
                 break
             choice = input("Enter 'Hit' to Hit or 'Stand' to Stand").lower()  
-        else:
-                print("The Dealers hand amount is",dealerAmount)
-                print("Your hand amount is", handAmount)
+        while dealerAmount < 16 or dealerAmount == handAmount:
+            addedCard = draw1()
+            dealerAmount += getValue(addedCard[0])
+            print("The Dealers hand amount is",dealerAmount)
+        print("Your hand amount is", handAmount)
         if handAmount <= 21 and handAmount > dealerAmount:
             winnings = winnings + betAmount
             print("The Dealer loses, you win!")
@@ -120,7 +118,7 @@ def blackjack():
                 done = True
         elif handAmount > 21:
             winnings = winnings - betAmount
-            print("The Dealer won, you lose", ":(")
+            print("The Dealer won you lose. :[")
             print("Your win total is now", winnings)
             playagain = input("Enter yes to play again.")
             if playagain == 'yes':
