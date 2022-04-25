@@ -1,5 +1,3 @@
-# Christmas/Schetroma/Coyle-FinalProject-Preposal
-
 # BlackJack Simulator READ.md
 This is our READ.md file for our final project. We created a blackjack simulator.
 
