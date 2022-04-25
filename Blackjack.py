@@ -114,7 +114,7 @@ def blackjack():
                 done = True
                 break
             choice = input("Enter 'Hit' to Hit or 'Stand' to Stand").lower()  
-        while dealerAmount < 16 or dealerAmount == handAmount:
+        if dealerAmount < 16 or dealerAmount == handAmount:
             addedCard = draw1()
             dealerAmount += getValue(addedCard[0])
             print("The Dealers hand amount is",dealerAmount)
