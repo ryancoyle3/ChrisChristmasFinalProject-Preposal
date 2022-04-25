@@ -113,7 +113,16 @@ def blackjack():
                 print("Your hand amount is over 21, The Dealer wins.")
                 done = True
                 break
-            choice = input("Enter 'Hit' to Hit or 'Stand' to Stand").lower()  
+            choice = input("Enter 'Hit' to Hit or 'Stand' to Stand").lower()
+        if sum(handAmount) > 21:
+            winnings = winnings + betAmount
+            print("The Dealer loses, you win! 💰🍾")
+            print("Your win total is now",winnings)
+            playagain = input("Enter yes to play again.")
+            if playagain == 'yes':
+                done = done
+            else:
+                done = True          
         if dealerAmount < 16 or dealerAmount == handAmount:
             addedCard = draw1()
             dealerAmount += getValue(addedCard[0])
