@@ -10,4 +10,4 @@ You say "Yes" your winnings will carry over, otherwise, you will be thanked for 
 We really stuggled implementing the rules of Ace into our function. That definetly took the most time of of our entire project. 
 
 # Video Walk-through
-https://photos.google.com/
+https://www.youtube.com/watch?v=n35S02KbRx0
